@@ -1,0 +1,13 @@
+certifi==2023.5.7
+cffi==1.15.1
+charset-normalizer==3.1.0
+ed25519==1.5
+idna==3.4
+markdown-it-py==2.2.0
+mdurl==0.1.2
+pycparser==2.21
+Pygments==2.15.1
+python-dotenv==1.0.0
+requests==2.30.0
+rich==13.3.5
+urllib3==2.0.2
