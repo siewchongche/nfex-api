@@ -21,29 +21,29 @@ base_url = 'https://apigw-uat.nfexinsider.com' # nfex local testnet
 # # 用户(Account)
 
 # # 资产列表(asset list)
-path = '/account/assets'
+# path = '/account/assets'
 
 # # 资金流水(account bills)
 # # action: 1 - 开多手续费, 2 - 开空手续费, 3 - 平多手续费, 4 - 平空手续费, 5 - 平多赢亏, 6 - 平空赢亏
 # # action: 1 - Fee for long opening, 2 - Fee for short opening, 3 - Fee for closing long, 4 - Fee for closing short, 5 - Fee for closing long, 6 - Profit and loss for closing
 # # can choose multiple action i.e. '1,2,3' (without space)
-# action = '1'
-# begin_time = ''
-# coin_code = ''
+# action = '3'
+# begin_time = '1684800000000'
+# coin_code = '1002'
 # end_time = ''
-# page_num = '' # 当前页(page num)
-# page_size = '' # 每页条数(page size)
+# page_num = '1' # 当前页(page num)
+# page_size = '1' # 每页条数(page size)
 # path = f'/account/bills?action={action}&begin_time={begin_time}&coin_code={coin_code}&end_time={end_time}&page_num={page_num}&page_size={page_size}'
 
 # # 查询订单委托(query order)
-# begin_time = ''
-# end_time = ''
-# order_ids = ''
-# order_status = '1' # 1 - 活动委托(active)，2 - 已完成(completed)
-# page_num = '' # 当前页(page num)
-# page_size = '' # 每页条数(page size)
-# trade_pair_id = ''
-# path = f'/account/orders?begin_time={begin_time}&end_time={end_time}&order_ids={order_ids}&order_status={order_status}&page_num={page_num}&page_size={page_size}&trade_pair_id={trade_pair_id}'
+begin_time = '1684800000000'
+end_time = ''
+order_ids = ''
+order_status = 'Pending' # possible values: Pending, Finished
+page_num = '1' # 当前页(page num)
+page_size = '1' # 每页条数(page size)
+trade_pair_id = '1002'
+path = f'/account/orders?begin_time={begin_time}&end_time={end_time}&order_ids={order_ids}&order_status={order_status}&page_num={page_num}&page_size={page_size}&trade_pair_id={trade_pair_id}'
 
 # # 获取仓位(get a position)
 # path = '/account/positions'
@@ -52,12 +52,12 @@ path = '/account/assets'
 # # 市场(market)
 
 # # 获取深度(get depth)
-# trade_pair_id='1016'
+# trade_pair_id='1002'
 # trade_pair_name='' # optional, can leave blank
 # path = f'/market/depth?trade_pair_id={trade_pair_id}&trade_pair_name={trade_pair_name}'
 
 # # 单个交易对的ticker(ticker for a single trading pair)
-# trade_pair_id='1016'
+# trade_pair_id='1002'
 # trade_pair_name='' # optional, can leave blank
 # path = f'/market/ticker?trade_pair_id={trade_pair_id}&trade_pair_name={trade_pair_name}'
 
