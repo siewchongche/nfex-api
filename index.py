@@ -14,6 +14,10 @@ values = {}
 
 # # ================================================== user interact section ==================================================
 
+# # API base url
+# base_url = 'https://apigw.nfex.io' # mainnet
+base_url = 'https://apigw-uat.nfexinsider.com' # nfex local testnet
+
 # # 用户(Account)
 
 # # 资产列表(asset list)
@@ -65,17 +69,17 @@ path = '/account/assets'
 
 # path = '/trade/order'
 # values = {
-#     "amount": "", # required, 订单额(order amount)
+#     "amount": "0.001", # required, 订单额(order amount)
 #     "o_type": "limit", # required, 订单类型(order type) "limit" or "market"
-#     "o_way": "", # required, 委托方向(order entrustment direction) 1 - 开多(open long) 2 - 平空(Open and close short) 3 - 开空(open short) 4 - 平多(open long positions)
-#     "position_type": "", # required, 仓位类型(position type) 1 - 逐仓(isolated Margin) 2 - 全仓(cross Margin)
+#     "o_way": "1", # required, 委托方向(order entrustment direction) 1 - 开多(open long) 2 - 平空(Open and close short) 3 - 开空(open short) 4 - 平多(open long positions)
+#     "position_type": "2", # required, 仓位类型(position type) 1 - 逐仓(isolated Margin) 2 - 全仓(cross Margin)
 #     "o_mode": "", # 订单模式(order mode) 1 - 普通(ordinary) 7 - 止赢(take profit) 8 - 止损(stop loss)
-#     "symbol_id": "", # 交易对id(trade pair id)
+#     "symbol_id": "1002", # 交易对id(trade pair id)
 #     "vol": "", # 订单量(order quantity)
 #     "custom_id": "", # 客户端定义的id(client defined id)
-#     "lever": "", # 杠杆(lever)
+#     "lever": "20", # 杠杆(lever)
 #     "position_id": "", # 仓位id(position id)
-#     "price": "", # 价格(price)
+#     "price": "1", # 价格(price)
 #     "strategy": "" # 订单策略(order strategy) GTC - 一直有效至取消(valid until canceled)
 # }
 
@@ -93,19 +97,19 @@ timestamp = str(int(time.time() * 1000))
 api_key = "d202565e3bd8c4d4b6bdd21c4e1133ef3f6ab7c6fc6b638cbe2d4d7d05460c9c"
 
 # hash message for signing, request by their API
-method = 'GET'
-msg = f'method={method}&path={path}&timestamp={timestamp}&access-key={api_key}'
-if values:
+method = ''
+msg = ''
+if values: # POST request
     method = 'POST'
-    msg += f'&body={values}'
+    msg = f'method=POST&path={path}&timestamp={timestamp}&access-key={api_key}&body={values}'
+else: # GET request
+    method = 'GET'
+    msg = f'method=GET&path={path}&timestamp={timestamp}&access-key={api_key}'
 hash_msg = hmac.new(bytes.fromhex(api_key), msg.encode(), hashlib.sha256)
 
 # sign message
 private_key = os.getenv("PRIVATE_KEY")
 signature = SigningKey(bytes.fromhex(private_key)).sign(hash_msg.digest())
-
-# API base url
-base_url = 'https://apigw.nfex.io'
 
 # API header
 headers = {
@@ -115,7 +119,11 @@ headers = {
 }
 
 # request API
-res = requests.get(base_url + path, headers=headers, data=values)
+res = ''
+if method == 'GET':
+    res = requests.get(base_url + path, headers=headers)
+else: # method = 'POST'
+    res = requests.post(base_url + path, headers=headers, data=values)
 res_json = res.json()
 
 # this section replace key in symbol with human readable text
