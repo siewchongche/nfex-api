@@ -199,14 +199,21 @@ def get_phrase(data):
 
 def get_phrases(data):
     if data:
+        data = get_phrase(data)
+
         if type(data) == list:
             data_temp = []
             for each_data in data:
-                data = get_phrase(each_data)
-                data_temp.append(data)
+                data_with_phrase = get_phrase(each_data)
+                data_temp.append(data_with_phrase)
             data = data_temp
 
-        else:
-            data = get_phrase(data)
+        if 'data' in data:
+            if type(data['data']) == list:
+                data_temp = []
+                for each_data in data['data']:
+                    data_with_phrase = get_phrase(each_data)
+                    data_temp.append(data_with_phrase)
+                data['data'] = data_temp
 
     return data
