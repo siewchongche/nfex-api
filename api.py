@@ -21,7 +21,7 @@ base_url = 'https://apigw-uat.nfexinsider.com' # nfex local testnet
 ## 用户(Account)
 
 ## 资产列表(asset list)
-path = '/account/assets'
+# path = '/account/assets'
 
 ## 资金流水(account bills)
 ## action: 1 - 开多手续费, 2 - 开空手续费, 3 - 平多手续费, 4 - 平空手续费, 5 - 平多赢亏, 6 - 平空赢亏
@@ -76,18 +76,18 @@ path = '/account/assets'
 
 ## 委托单(orders)
 
-# path = '/trade/order'
-# values = """
-# {
-#     "amount": "0.001",
-#     "o_type": "limit",
-#     "o_way": 1,
-#     "position_type": 2,
-#     "symbol_id": 1002,
-#     "lever": 20,
-#     "price": "1"
-# }
-# """
+path = '/trade/order'
+values = """
+{
+    "amount": "0.004",
+    "o_type": "limit",
+    "o_way": 1,
+    "position_type": 2,
+    "symbol_id": 1002,
+    "lever": 20,
+    "price": "1"
+}
+"""
 
 ## possible input
 ## amount: required, 订单额(order amount)
