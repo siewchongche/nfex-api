@@ -30,6 +30,46 @@ Examples to call NFEX API
 
 > python3 api.py
 
+## trade id - name
+
+1001 - AZUKI/ETH
+
+1003 - MAYC/ETH
+
+1004 - CLONEX/ETH
+
+1006 - DOODLE/ETH
+
+1008 - OTHERD/ETH
+
+1009 - PUNK/ETH
+
+1010 - NAKAMI/ETH
+
+1012 - DEGODS/ETH
+
+1013 - MILADY/ETH
+
+1018 - BAKC/ETH
+
+1019 - BEANZ/ETH
+
+1022 - GEMESIS/ETH
+
+1023 - LFPEPE/ETH
+
+1027 - REMILI/ETH
+
+1029 - KPANDA/ETH
+
+1031 - KUBZ/ETH
+
+1032 - 0N1/ETH
+
+1033 - MFERS/ETH
+
+1034 - OPEPEN/ETH
+
 ## UI Url
 
 Main: https://www.nfex.io/trade/BAYC
