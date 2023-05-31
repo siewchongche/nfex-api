@@ -18,16 +18,18 @@ from rich import print_json
 
 ## ================================================== user interact section ==================================================
 
-trade_pair_id = 1002
+trade_pair_id = 1009
 size = '0.005' # minimum size for open short is 0.005 eth
 refresh_seconds = 5 # 5 seconds
 api_key = 'd202565e3bd8c4d4b6bdd21c4e1133ef3f6ab7c6fc6b638cbe2d4d7d05460c9c'
+spread = 0.01
+leverage = 2
 
 ## =============================================== end of user interact section ===============================================
 
 
-# base_url = 'https://apigw.nfex.io' # mainnet
-base_url = 'https://apigw-uat.nfexinsider.com' # nfex local testnet
+base_url = 'https://apigw.nfex.io' # mainnet
+#base_url = 'https://apigw-uat.nfexinsider.com' # nfex local testnet
 
 
 def sign(path, values={}):
@@ -64,7 +66,7 @@ while True:
     print('Mark price:', mark_price)
 
     # calculate offer price
-    offer_price = float(mark_price) * 102 / 100 # add 2%
+    offer_price = float(mark_price) * (1+spread) # add 2%
     print('Offer price:', offer_price)
 
     # submit offer
@@ -75,9 +77,12 @@ while True:
         'o_way': 3, # 1 - open long, 2 - open and close short, 3 - open short, 4 - open long positions
         'position_type': 2, # 1 - isolated margin, 2 - cross margin
         'symbol_id': trade_pair_id,
-        'lever': 10, # TODO: minimum leverage is 10 for testnet, please change to 5 in mainnet
+        'lever': leverage, # TODO: minimum leverage is 10 for testnet, please change to 5 in mainnet
         'price': offer_price
     }
+
+    # TODO cancel order
+
     values = json.dumps(values)
     headers = sign(path, values)
     res = requests.post(base_url + path, headers=headers, data=values)

@@ -15,8 +15,8 @@ values = {}
 ## ================================================== user interact section ==================================================
 
 ## API base url
-# base_url = 'https://apigw.nfex.io' # mainnet
-base_url = 'https://apigw-uat.nfexinsider.com' # nfex local testnet
+base_url = 'https://apigw.nfex.io' # mainnet
+#base_url = 'https://apigw-uat.nfexinsider.com' # nfex local testnet
 
 ## 用户(Account)
 
@@ -76,18 +76,18 @@ base_url = 'https://apigw-uat.nfexinsider.com' # nfex local testnet
 
 ## 委托单(orders)
 
-path = '/trade/order'
-values = """
-{
-    "amount": "0.004",
-    "o_type": "limit",
-    "o_way": 1,
-    "position_type": 2,
-    "symbol_id": 1002,
-    "lever": 20,
-    "price": "1"
-}
-"""
+# path = '/trade/order'
+# values = """
+# {
+#     "amount": "0.0004",
+#     "o_type": "limit",
+#     "o_way": 1,
+#     "position_type": 2,
+#     "symbol_id": 1002,
+#     "lever": 5,
+#     "price": "1"
+# }
+# """
 
 ## possible input
 ## amount: required, 订单额(order amount)
