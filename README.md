@@ -76,6 +76,10 @@ This script generate random keypair for ed25519 locally, which contain public ke
 
 > python3 keypair.py
 
+Public key to give NFEX team, together with EOA that reload ETH, for whitelist purpose.
+
+Private key to insert into `.env` file to use the API, after NFEX team whitelisted successfully.
+
 ## UI Url
 
 Main: https://www.nfex.io/trade/BAYC
