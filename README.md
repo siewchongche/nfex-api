@@ -19,7 +19,7 @@ The process will repeat until interrupt by keyboard.
 3. Install dependencies
 > pip install -r requirements.txt
 
-3. Insert private key in `.env` file
+3. Create a `.env` file and insert `PRIVATE_KEY=private key here`
 
 4. Edit input in === user interact section === and run script
 > python3 bot.py
@@ -69,6 +69,12 @@ Examples to call NFEX API
 1033 - MFERS/ETH
 
 1034 - OPEPEN/ETH
+
+## ed25519 keypair
+
+This script generate random keypair for ed25519 locally, which contain public key & private key of ed25519 for the API.
+
+> python3 keypair.py
 
 ## UI Url
 
