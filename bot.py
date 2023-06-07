@@ -13,11 +13,11 @@ from rich import print_json
 ## ================================================== user interact section ==================================================
 
 trade_pair_id = 1002
-o_way = 3 # order entrustment direction, 1 - open long, 2 - open and close short, 3 - open short, 4 - open long positions
+o_way = 1 # order entrustment direction, 1 - open long, 2 - close short, 3 - open short, 4 - close long
 size = '0.005'
 refresh_seconds = 5 # 5 seconds
 api_key = 'd202565e3bd8c4d4b6bdd21c4e1133ef3f6ab7c6fc6b638cbe2d4d7d05460c9c'
-spread = 0.01
+spread = -0.02
 leverage = 10
 
 ## =============================================== end of user interact section ===============================================
@@ -26,7 +26,6 @@ leverage = 10
 # base_url = 'https://apigw.nfex.io' # mainnet
 base_url = 'https://apigw-uat.nfexinsider.com' # nfex local testnet
 order_id = ''
-symbol_id = ''
 
 
 def sign(path, values={}):
@@ -60,7 +59,7 @@ while True:
         path = '/trade/cancelOrders'
         values = {
             'orders': [order_id],
-            'symbol_id': symbol_id
+            'symbol_id': trade_pair_id
         }
 
         values = json.dumps(values)
@@ -70,6 +69,7 @@ while True:
         res_pretty = json.dumps(res_json, indent=1)
         print_json(res_pretty)
         print('')
+
 
     # get mark price
     print('Getting mark price...')
@@ -81,7 +81,7 @@ while True:
     print('Mark price:', mark_price)
 
     # calculate offer price
-    offer_price = float(mark_price) * (1+spread) # add 2%
+    offer_price = float(mark_price) * (1+spread)
     print('Offer price:', offer_price)
     print('')
 
@@ -91,7 +91,7 @@ while True:
     values = {
         'amount': size,
         'o_type': 'limit',
-        'o_way': o_way, # 1 - open long, 2 - open and close short, 3 - open short, 4 - open long positions
+        'o_way': o_way,
         'position_type': 2, # 1 - isolated margin, 2 - cross margin
         'symbol_id': trade_pair_id,
         'lever': leverage,
