@@ -19,6 +19,7 @@ from rich import print_json
 ## ================================================== user interact section ==================================================
 
 trade_pair_id = 1009
+o_way = 1 # order entrustment direction, 1 - open long, 2 - open and close short, 3 - open short, 4 - open long positions
 size = '0.005' # minimum size for open short is 0.005 eth
 refresh_seconds = 5 # 5 seconds
 api_key = 'd202565e3bd8c4d4b6bdd21c4e1133ef3f6ab7c6fc6b638cbe2d4d7d05460c9c'
@@ -74,7 +75,7 @@ while True:
     values = {
         'amount': size,
         'o_type': 'limit',
-        'o_way': 3, # 1 - open long, 2 - open and close short, 3 - open short, 4 - open long positions
+        'o_way': o_way, # 1 - open long, 2 - open and close short, 3 - open short, 4 - open long positions
         'position_type': 2, # 1 - isolated margin, 2 - cross margin
         'symbol_id': trade_pair_id,
         'lever': leverage, # TODO: minimum leverage is 10 for testnet, please change to 5 in mainnet
